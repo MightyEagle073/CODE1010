@@ -11,8 +11,8 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     text-align: center;
-	background-image: url(/static/background.png);
-	background-size: 50%;
+    background-image: url(/static/background.png);
+    background-size: 50%;
 }
 
 /*Navbar code: Copied and modified from WCR, an old high school project of mine*/
@@ -54,14 +54,14 @@ nav ul li a {
 nav ul li:hover {
     background-color: #ffffff;
 }
-nav ul li:first-child a{
+nav ul li:first-child a {
     background-image: url(/static/logo.png);
     background-size: 80%;
     background-repeat: no-repeat;
     background-position: center;
     color: rgba(0, 0, 0, 0);
 }
-nav ul li:last-child{
+nav ul li:last-child {
     display: fixed;
     position: fixed;
     right: 20px;
@@ -69,45 +69,62 @@ nav ul li:last-child{
 
 nav ul li a table td {
     line-height: 10px;
-	font-size: 16px;
+    font-size: 16px;
 }
 
 /* Welcome page CSS */
 #welcome_container {
-	display: inline;
+    display: inline;
 }
 
-#welcome_container tr td{
-	padding: 0px 30px;
-	font-size: 20px;
+#welcome_container tr td {
+    padding: 0px 30px;
+    font-size: 20px;
 }
 
-#welcome_container tr th{
-	width: 500px;
-	padding: 0px 30px;
-	font-size: 50px;
+#welcome_container tr th {
+    width: 500px;
+    padding: 0px 30px;
+    font-size: 50px;
 }
 
-#welcome_container tr th img{
-	height: 400px;
-	width: 400px;
+#welcome_container tr th img {
+    height: 400px;
+    width: 400px;
 }
 
 /* General code */
 .main_container {
     position: relative;
     margin-top: 100px;
-	text-align: center;
+    text-align: center;
 }
 
 .login_inputs {
-	font-size: 20px;
-	font-family: "Open Sans", "Segoe UI", sans-serif;
-	padding: 2px;
-	margin: 5px;
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 2px;
+    margin: 5px;
 }
 
-#login_submit, #register_submit {
-	background-color: greenyellow;
-	border: 1px solid green;
+.account_inputs {
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+#account_logout {
+    background-color: orange;
+}
+
+#account_delete {
+    background-color: red;
+}
+
+#login_submit,
+#register_submit {
+    background-color: greenyellow;
+    border: 1px solid green;
 }

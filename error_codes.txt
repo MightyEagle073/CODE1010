@@ -1,0 +1,11 @@
+100 series error codes occur during register
+101: Username already taken! Please pick another username.
+102: Username is too short! Usernames must be at least 3 characters long.
+103: The password and confirm password fields do not match! Please check your passwords.
+104: Password is too short! Your password must contain at least 8 characters.
+105: Password must contain at least one number!
+106: Password must contain at least two letters!
+107: Password must contain at least one uppercase letter!
+108: Password must contain at least one lowercase letter!
+
+200 series error codes occur during sign in

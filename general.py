@@ -4,9 +4,8 @@ from pyhtml import html, table, tr, th, td, img, a
 def get_login_data():
     if session["login"] == False:
         return "Log in/Sign up here"
-        # return table(tr(td("Logged in as: user123"))), tr(td((("Not you? Click to log out"))))
     else:
-        return session["login"]
+        return f"Welcome, {session['login']}!"
     
 def get_welcome_data():
     return html(

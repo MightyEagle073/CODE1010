@@ -1,13 +1,14 @@
-from flask import Flask, request, session
+from flask import Flask, request, session, redirect
 from pyhtml import html, form, input_, head, body, div, h1, h2, h3, p, table, th, tr, td, br, link, a, nav, ul, li
 from general import get_login_data
+from datetime import datetime
 
 def get_main_data():
-    if 20 == 20:
+    if session["login"] == False:
         return html(
             form(
                 h2("Sign in if you are already registered!"), 
-                input_(type = "text", name = "login_id", class_ = "login_inputs", placeholder = "Username", required = True), 
+                input_(type = "text", id = "login_username", class_ = "login_inputs", name = "login_username", placeholder = "Username", required = True), 
                 br(),
                 input_(type = "password", id = "login_password", class_ = "login_inputs", name = "login_password", placeholder = "Password", required = True), 
                 br(),
@@ -15,7 +16,7 @@ def get_main_data():
             ),
             form(
                 h2("Not yet registered? Create an account here!"),
-                input_(type = "text", id = "register_id", class_ = "login_inputs", name = "register_id", placeholder = "Choose a Username", required = True), 
+                input_(type = "text", id = "register_username", class_ = "login_inputs", name = "register_username", placeholder = "Choose a Username", required = True), 
                 br(),
                 input_(type = "password", id = "register_password", class_ = "login_inputs", name = "register_password", placeholder = "Create a Password", required = True), 
                 br(),
@@ -25,7 +26,74 @@ def get_main_data():
             )
         )
     else: 
+        return html(
+            h2(f"Welcome to your account options, {session['login']}!"),
+            p(f"Account creation time: {session['database'][session['login']]['created_at']}"),
+            form(
+                input_(type = "submit", id = "account_logout", class_ = "account_inputs", name = "account_logout", value = "Log Out"),
+                input_(type = "submit", id = "account_delete", class_ = "account_inputs", name = "account_delete", value = "Delete Account")
+            ),
+        )
+def log_in():
+    if request.form["login_username"] not in session["database"]:
+        print("No such user exists in our database!")
+        session["error"] = 201
+    elif request.form["login_password"] != session["database"][request.form["login_username"]]["password"]:
+        print("Password Incorrect")
+        session["error"] = 202
+    else:
+        session["login"] = request.form["login_username"]
+        session.modified = True
+
+def log_out():
+    session["login"] = False
+    session.modified = True
+
+def create_account():
+    if request.form["register_username"] in session["database"]:
+        print("Username already taken! Please pick another username.")
+        session["error"] = 101
+    elif len(request.form["register_username"]) < 3:
+        print("Username is too short! Usernames must be at least 3 characters long.")
+        session["error"] = 102
+    elif request.form["register_password"] !=  request.form["register_confirm"]:
+        print("The password and confirm password fields do not match! Please check your passwords.")
+        session["error"] = 103
         return
+    elif len(request.form["register_password"]) < 8:
+        print("Password is too short! Your password must contain at least 8 characters.")
+        session["error"] = 104
+        return
+    elif not any(char.isdigit() for char in request.form["register_password"]):
+        print("Password must contain at least one number!")
+        session["error"] = 105
+        return
+    elif not any(char.isalpha() for char in request.form["register_password"]):
+        print("Password must contain at least two letters!")
+        session["error"] = 106
+        return
+    elif request.form["register_password"] == request.form["register_password"].lower():
+        print("Password must contain at least one uppercase letter!")
+        session["error"] = 107
+        return
+    elif request.form["register_password"] == request.form["register_password"].upper():
+        print("Password must contain at least one lowercase letter!")
+        session["error"] = 108
+        return
+    else:
+        print("ok")
+        session["database"][request.form["register_username"]] = {
+            "password": request.form["register_password"],
+            "created_at": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        }
+        session["login"] = request.form["register_username"]
+        session.modified = True
+        return
+
+def delete_account():
+    print("Account deleted")
+    session["database"].pop(session["login"])
+    session["login"] = False
 
 def get_login_html():
     return html(
