@@ -15,6 +15,10 @@ body {
     background-size: 50%;
 }
 
+button {
+    cursor: pointer;
+}
+
 /*Navbar code: Copied and modified from WCR, an old high school project of mine*/
 nav {
     position: fixed;
@@ -104,13 +108,32 @@ nav ul li a table td {
     border: 1px solid black;
 }
 
-/* General code */
-.main_container {
-    position: relative;
-    margin-top: 100px;
-    text-align: center;
+/*History CSS*/
+#history_add {
+    position: absolute;
+    top: 0px;
+    right: 5%;
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 5px;
+    background-color: lightgreen;
 }
 
+#history_table {
+    display: inline;
+}
+#history_table th, #history_table td {
+    border: 1px solid black;
+    margin: 0px;
+    padding: 3px;
+}
+
+#history_table td:last-child {
+    cursor: pointer;
+}
+
+/*Login CSS*/
 .login_inputs {
     font-size: 20px;
     font-family: "Open Sans", "Segoe UI", sans-serif;
@@ -138,4 +161,127 @@ nav ul li a table td {
 #register_submit {
     background-color: greenyellow;
     border: 1px solid green;
+}
+
+/* General code */
+.main_container {
+    position: relative;
+    margin-top: 100px;
+    text-align: center;
+}
+
+/* Overlay code */
+/* Overlay code is borrowed from Life Simulator, an old high school project of mine. */
+
+.overlay {
+    /*Code borrowed from Life Simulator, which was borrowed from a source online that I forgot*/
+    /*The overlay dims the screen when active, also contains the specified tab*/
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    animation-name: overlay_animation;
+    animation-duration: 1s;
+}
+
+.tab {
+    /* Code borrowed from Life Simulator, an old high school project of mine */
+    position: fixed;
+    display: fixed;
+    background-color: rgba(255, 255, 255, 0.7);
+    animation-duration: 1s;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#history_tab {
+    left: 30%;
+    width: 40%;
+    top: 20%;
+    height: 60%;
+    animation-name: tab_animation_40
+}
+
+#starting_balance_tab {
+    left: 35%;
+    width: 30%;
+    top: 40%;
+    height: 20%;
+    animation-name: tab_animation_30;
+}
+
+#history_container {
+    position: relative;
+    left: 3%;
+    width: 94%;
+    height: 80%;
+}
+
+#starting_balance_container {
+    position: relative;
+    left: 3%;
+    width: 94%;
+}
+
+#history_form_add{
+    position: inline;
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 5px;
+    background-color: lightgreen;
+}
+
+#history_form_close {
+    position: inline;
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 5px;
+    background-color: red;
+}
+
+#starting_balance_close {
+    position: inline;
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 5px;
+    background-color: red;
+}
+
+@keyframes overlay_animation {
+    from {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    to {
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes tab_animation_30 {
+    from {
+        left: -30%;
+    }
+
+    to {
+        left: 35%;
+    }
+}
+
+@keyframes tab_animation_40 {
+    from {
+        left: -40%;
+    }
+
+    to {
+        left: 30%;
+    }
 }

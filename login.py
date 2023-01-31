@@ -84,7 +84,9 @@ def create_account():
         print("ok")
         session["database"][request.form["register_username"]] = {
             "password": request.form["register_password"],
-            "created_at": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+            "created_at": datetime.now(),
+            "starting_balance": 0.00,
+            "transactions": []
         }
         session["login"] = request.form["register_username"]
         session.modified = True
