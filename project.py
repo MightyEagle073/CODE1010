@@ -8,7 +8,7 @@ from random import randint
 from secrets import token_hex
 from mainpage import get_mainpage_html
 from login import get_login_html, log_in, log_out, create_account, delete_account
-from history import get_history_html
+from history import get_history_html, change_starting_balance, add_history_input, remove_history_input
 from income import get_income_html
 from spendings import get_spendings_html
 
@@ -25,10 +25,18 @@ def mainpage():
         session.modified = True
     return str(get_mainpage_html())
 
-@APP.route('/history', methods=['GET'])
+@APP.route('/history', methods=['POST', 'GET'])
 def history():
     if "initialised" not in session:
         return (redirect("..", code=302))
+    if request.method == "POST":
+        print("history_remove" in request.form)
+        if "starting_balance_input" in request.form:
+            change_starting_balance()
+        elif "history_form_tt" in request.form:
+            add_history_input()
+        elif "history_remove" in request.form:
+            remove_history_input(request.form["history_remove_value"])
     return str(get_history_html())
 
 @APP.route('/income', methods=['GET'])
@@ -42,7 +50,6 @@ def spendings():
     if "initialised" not in session:
         return (redirect("..", code=302))
     return str(get_spendings_html())
-
 @APP.route('/login', methods=['POST', 'GET'])
 def login():
     if "initialised" not in session:

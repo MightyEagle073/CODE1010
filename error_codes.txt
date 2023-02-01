@@ -9,3 +9,7 @@
 108: Password must contain at least one lowercase letter!
 
 200 series error codes occur during sign in
+
+300 series error codes occur in the history table
+301: Starting balance input is not a number
+302: Failed to intepret transaction time. Please try another format.

@@ -37,10 +37,10 @@ def get_main_data():
 def log_in():
     if request.form["login_username"] not in session["database"]:
         print("No such user exists in our database!")
-        session["error"] = 201
+        session["error_code"] = 201
     elif request.form["login_password"] != session["database"][request.form["login_username"]]["password"]:
         print("Password Incorrect")
-        session["error"] = 202
+        session["error_code"] = 202
     else:
         session["login"] = request.form["login_username"]
         session.modified = True
@@ -52,33 +52,33 @@ def log_out():
 def create_account():
     if request.form["register_username"] in session["database"]:
         print("Username already taken! Please pick another username.")
-        session["error"] = 101
+        session["error_code"] = 101
     elif len(request.form["register_username"]) < 3:
         print("Username is too short! Usernames must be at least 3 characters long.")
-        session["error"] = 102
+        session["error_code"] = 102
     elif request.form["register_password"] !=  request.form["register_confirm"]:
         print("The password and confirm password fields do not match! Please check your passwords.")
-        session["error"] = 103
+        session["error_code"] = 103
         return
     elif len(request.form["register_password"]) < 8:
         print("Password is too short! Your password must contain at least 8 characters.")
-        session["error"] = 104
+        session["error_code"] = 104
         return
     elif not any(char.isdigit() for char in request.form["register_password"]):
         print("Password must contain at least one number!")
-        session["error"] = 105
+        session["error_code"] = 105
         return
     elif not any(char.isalpha() for char in request.form["register_password"]):
         print("Password must contain at least two letters!")
-        session["error"] = 106
+        session["error_code"] = 106
         return
     elif request.form["register_password"] == request.form["register_password"].lower():
         print("Password must contain at least one uppercase letter!")
-        session["error"] = 107
+        session["error_code"] = 107
         return
     elif request.form["register_password"] == request.form["register_password"].upper():
         print("Password must contain at least one lowercase letter!")
-        session["error"] = 108
+        session["error_code"] = 108
         return
     else:
         print("ok")
@@ -86,7 +86,7 @@ def create_account():
             "password": request.form["register_password"],
             "created_at": datetime.now(),
             "starting_balance": 0.00,
-            "transactions": []
+            "transactions": [{}]
         }
         session["login"] = request.form["register_username"]
         session.modified = True
@@ -99,7 +99,7 @@ def delete_account():
 
 def get_login_html():
     return html(
-        head(
+        head( 
             link(rel="shortcut icon", type="image/png", href="/static/logo.png"),
             link(rel='stylesheet', href='static/style.css'),
         ),

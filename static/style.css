@@ -120,10 +120,11 @@ nav ul li a table td {
     background-color: lightgreen;
 }
 
-#history_table {
+#history_table, #history_form_table {
     display: inline;
 }
-#history_table th, #history_table td {
+
+#history_table th, #history_table td{
     border: 1px solid black;
     margin: 0px;
     padding: 3px;
@@ -131,6 +132,34 @@ nav ul li a table td {
 
 #history_table td:last-child {
     cursor: pointer;
+}
+
+#history_form_table td {
+    padding: 3px;
+}
+
+#history_form_table td:first-child {
+    text-align: right;
+}
+
+#history_form_table td:last-child {
+    text-align: left;
+}
+
+#history_form_table input {
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 2px;
+    margin: 5px;
+}
+
+#history_form_table input:first-child {
+    padding: 0px;
+}
+
+.history_remove, #starting_balance_edit_button {
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    width: 70px;
 }
 
 /*Login CSS*/
@@ -162,6 +191,77 @@ nav ul li a table td {
     background-color: greenyellow;
     border: 1px solid green;
 }
+
+/*History code*/
+#history_tab {
+    left: 30%;
+    width: 40%;
+    top: 20%;
+    height: 60%;
+    animation-name: tab_animation_40
+}
+
+#history_container {
+    position: relative;
+    left: 3%;
+    width: 94%;
+    height: 80%;
+}
+
+#history_form_add{
+    position: inline;
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 20px 5px 5px 5px;
+    background-color: lightgreen;
+}
+
+#history_form_close {
+    position: inline;
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 5px;
+    background-color: red;
+}
+
+#starting_balance_tab {
+    left: 35%;
+    width: 30%;
+    top: 35%;
+    height: 30%;
+    animation-name: tab_animation_30;
+}
+
+#starting_balance_container {
+    position: relative;
+    left: 3%;
+    width: 94%;
+}
+
+#starting_balance_container label, #starting_balance_container input{
+    font-size: 20px;
+}
+
+#starting_balance_edit {
+    position: inline;
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 20px 5px 5px 5px;
+    background-color: lightgreen;
+}
+
+#starting_balance_close {
+    position: inline;
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 5px;
+    background-color: red;
+}
+
 
 /* General code */
 .main_container {
@@ -198,62 +298,6 @@ nav ul li a table td {
     animation-duration: 1s;
     overflow-x: hidden;
     overflow-y: auto;
-}
-
-#history_tab {
-    left: 30%;
-    width: 40%;
-    top: 20%;
-    height: 60%;
-    animation-name: tab_animation_40
-}
-
-#starting_balance_tab {
-    left: 35%;
-    width: 30%;
-    top: 40%;
-    height: 20%;
-    animation-name: tab_animation_30;
-}
-
-#history_container {
-    position: relative;
-    left: 3%;
-    width: 94%;
-    height: 80%;
-}
-
-#starting_balance_container {
-    position: relative;
-    left: 3%;
-    width: 94%;
-}
-
-#history_form_add{
-    position: inline;
-    font-size: 20px;
-    font-family: "Open Sans", "Segoe UI", sans-serif;
-    padding: 5px;
-    margin: 5px;
-    background-color: lightgreen;
-}
-
-#history_form_close {
-    position: inline;
-    font-size: 20px;
-    font-family: "Open Sans", "Segoe UI", sans-serif;
-    padding: 5px;
-    margin: 5px;
-    background-color: red;
-}
-
-#starting_balance_close {
-    position: inline;
-    font-size: 20px;
-    font-family: "Open Sans", "Segoe UI", sans-serif;
-    padding: 5px;
-    margin: 5px;
-    background-color: red;
 }
 
 @keyframes overlay_animation {
