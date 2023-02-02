@@ -109,7 +109,7 @@ nav ul li a table td {
 }
 
 /*Subpages CSS*/
-#history_add, #income_add_income{
+#history_add, #income_add_income, #spendings_add_spending{
     position: absolute;
     top: 0px;
     right: 5%;
@@ -120,7 +120,7 @@ nav ul li a table td {
     background-color: lightgreen;
 }
 
-#income_add{
+#income_add, #spendings_add{
     font-size: 20px;
     font-family: "Open Sans", "Segoe UI", sans-serif;
     padding: 5px;
@@ -128,55 +128,62 @@ nav ul li a table td {
     background-color: lightgreen;
 }
 
-#history_table, #history_form_table, #income_table, #income_form_table {
+#history_table, #history_form_table, #income_table, #income_form_table, #spendings_table, #spendings_form_table{
     display: inline;
 }
 
-#history_table th, #history_table td, #income_table th, #income_table td{
+#history_table th, #history_table td, #income_table th, #income_table td, #spendings_table th, #spendings_table td{
     border: 1px solid black;
     margin: 0px;
     padding: 3px;
 }
 
-#history_table td:last-child, #income_table td:last-child{
+#history_table td:last-child, #income_table td:last-child, #spendings_table td:last-child{
     cursor: pointer;
 }
 
-#history_form_table td, #income_form_table td {
+#history_form_table td, #income_form_table td, #spendings_form_table td{
     padding: 3px;
 }
 
-#history_form_table td:first-child, #income_form_table td:first-child {
+#history_form_table td:first-child, #income_form_table td:first-child, #spendings_form_table td:first-child{
     text-align: right;
 }
 
-#history_form_table td:last-child #income_table td:last-child {
+#history_form_table td:last-child #income_table td:last-child, #spendings_table td:last-child{
     text-align: left;
 }
 
-#history_form_table input, #income_form_table input, #income_form_table select  {
+#history_form_table input, #income_form_table input, #income_form_table select, #spendings_form_table input, #spendings_form_table select{
     font-size: 20px;
     font-family: "Open Sans", "Segoe UI", sans-serif;
     padding: 2px;
     margin: 5px;
 }
 
-#history_form_table input:first-child, #income_form_table input:first-child {
+#history_form_table input:first-child, #income_form_table input:first-child, #spendings_form table input:first-child{
     padding: 0px;
 }
 
-.history_remove, #starting_balance_edit_button {
+.history_remove, .income_remove {
     font-family: "Open Sans", "Segoe UI", sans-serif;
     width: 70px;
+    background-color: red;
 }
 
-/*Income CSS*/
-#income_table td:last-child {
+#starting_balance_edit_button {
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    width: 70px;
+    background-color: lightgreen;
+}
+
+/*Income and Spending CSS*/
+#income_table td:last-child, #spendings_table td:last-child{
     text-align: left;
 }
 
-#income_table select {
-    width: 250px;
+#income_form_table select, #spendings_form_table select {
+    width: 230px;
 }
 
 /*Login CSS*/
@@ -210,7 +217,7 @@ nav ul li a table td {
 }
 
 /*History code*/
-#history_tab, #income_tab {
+#history_tab, #income_tab, #spendings_tab {
     left: 30%;
     width: 40%;
     top: 20%;
@@ -233,7 +240,7 @@ nav ul li a table td {
     background-color: lightgreen;
 }
 
-#history_form_close, #income_close {
+#history_form_close, #income_close, #spendings_close {
     font-size: 20px;
     font-family: "Open Sans", "Segoe UI", sans-serif;
     padding: 5px;

@@ -10,7 +10,7 @@ from mainpage import get_mainpage_html
 from login import get_login_html, log_in, log_out, create_account, delete_account
 from history import get_history_html, change_starting_balance, add_history_input, remove_history_input
 from income import get_income_html, add_income, remove_income_input
-from spendings import get_spendings_html
+from spendings import get_spendings_html, add_spendings, remove_spendings_input
 
 APP = Flask(__name__)
 APP.config['SECRET_KEY'] = "The quick brown fox jumps over the lazy dog"
@@ -50,13 +50,15 @@ def income():
             remove_income_input(request.form["income_remove_value"])
     return str(get_income_html())
 
-@APP.route('/spendings', methods=['GET'])
+@APP.route('/spendings', methods=['POST', 'GET'])
 def spendings():
     if "initialised" not in session:
         return (redirect("..", code=302))
     if request.method == "POST":
         if "spendings_description" in request.form:
-            add_income()
+            add_spendings()
+        elif "spendings_remove" in request.form:
+            remove_spendings_input(request.form["spendings_remove_value"])
     return str(get_spendings_html())
 @APP.route('/login', methods=['POST', 'GET'])
 def login():

@@ -13,6 +13,10 @@ def add_income():
         print("Amount input is not a number")
         session["error_code"] = 401
         return
+    if input < 0:
+        print("Amount must not be negative")
+        session["error_code"] = 402
+        return
     if "income_type" not in request.form:
         type = False
     else:
@@ -84,11 +88,11 @@ def get_table_data():
                     table_data = table_data + [tr(
                         td(dict["description"]),
                         td(type),
-                        td("$" + "{:.2f}".format(dict["amount"])),
-                        td("$" + "{:.2f}".format(dict["amount"]*7)),
-                        td("$" + "{:.2f}".format(dict["amount"]*14)),
-                        td("$" + "{:.2f}".format(dict["amount"]*30.4375)),
-                        td("$" + "{:.2f}".format(dict["amount"]*365.25)),
+                        td("$" + "{:,.2f}".format(dict["amount"])),
+                        td("$" + "{:,.2f}".format(dict["amount"]*7)),
+                        td("$" + "{:,.2f}".format(dict["amount"]*14)),
+                        td("$" + "{:,.2f}".format(dict["amount"]*30.4375)),
+                        td("$" + "{:,.2f}".format(dict["amount"]*365.25)),
                         td(category),
                         td(
                             form(
@@ -97,6 +101,19 @@ def get_table_data():
                             )
                         ),   
                     )]
+        total = 0
+        for dict in session["database"][session["login"]]["income"]:
+            total = total + dict["amount"]
+        table_data = table_data + [tr(
+            td(colspan = 2)("Total"),
+            td("$" + "{:,.2f}".format(total)),
+            td("$" + "{:,.2f}".format(total * 7)),
+            td("$" + "{:,.2f}".format(total * 14)),
+            td("$" + "{:,.2f}".format(total * 30.4375)),
+            td("$" + "{:,.2f}".format(total * 365.25)),
+            td(),
+            td(),
+        )]
     return table_data
 
 def get_main_data():
@@ -146,7 +163,7 @@ def get_main_data():
                                 ),
                                 tr(
                                     td(label(for_ = "income_interval")("Interval :")),
-                                    td(select(name = "income_interval", id = "income_")("Interval")(
+                                    td(select(name = "income_interval", id = "income_interval")("Interval")(
                                         option(value = "select")("Select"),
                                         option(value = "day")("Per Day"),
                                         option(value = "week")("Per Week"),
@@ -157,7 +174,7 @@ def get_main_data():
                                 ),
                                 tr(
                                     td(label(for_ = "income_category")("Category:")),
-                                    td(select(name = "income_category", id = "income_")("Category")(
+                                    td(select(name = "income_category", id = "income_category")("Category")(
                                         option(value = "select")("Select"),
                                         option(value = "ats")("Always the same"),
                                         option(value = "approx")("Approximate")
