@@ -33,7 +33,6 @@ def add_history_input():
     except:
         print("Failed to intepret transaction time. Please try another format.")
         session["error_code"] = 302
-        return
     if request.form["history_form_amount"][1] == "$":
         input = request.form["history_form_amount"][:1]
     else:
@@ -68,7 +67,7 @@ def add_history_input():
     # Appends into already existing database
     session["database"][session["login"]]["transactions"] = [append_list] + session["database"][session["login"]]["transactions"]
     # Sorts 
-    session["database"][session["login"]]["transactions"] = sorted(session["database"][session["login"]]["transactions"][:-1], key=lambda transaction: transaction['tt'], reverse=True)
+    session["database"][session["login"]]["transactions"] = sorted(session["database"][session["login"]]["transactions"], key=lambda transaction: transaction['tt'], reverse=True)
     # Assigns ID to every single entry
     i = 1
     for dict in session["database"][session["login"]]["transactions"]:
@@ -119,7 +118,7 @@ def get_table_data():
         th("Payment Method"),
         th("Amount"),
         th("Balance"),
-        th(""),
+        th("Remove"),
     )]
     if session["database"][session["login"]]["transactions"] != [{}]:
         for i in range(len(session["database"][session["login"]]["transactions"])):
@@ -137,7 +136,7 @@ def get_table_data():
                     method = "Not Provided"
                 else:
                     method = dict["method"] 
-                amount = "$" + "{:.2f}".format(dict["amount"])
+                amount = "$" + "{:,.2f}".format(dict["amount"])
                 print(dict)
                 table_data = table_data + [tr(
                     td(datetime. fromtimestamp((dict["tt"]))),
@@ -155,7 +154,8 @@ def get_table_data():
                         )
                     )
             )]     
-    starting_balance = "{:.2f}".format(session["database"][session["login"]]["starting_balance"], 2)
+    print(session["database"][session["login"]]["starting_balance"])
+    starting_balance = "{:,.2f}".format(session["database"][session["login"]]["starting_balance"])
     table_data = table_data + [tr(
         td(colspan = 7)("Starting Balance"),
         td(f"${starting_balance}"),
@@ -222,8 +222,12 @@ def get_main_data():
                                 ),
                                 tr(
                                     td(label(for_ = "history_form_amount")("Amount:")),
-                                    td(input_(type = "text", name = "history_form_amount", id = "history_form_amount", placeholder = "e.g. 252.65", required = True))
+                                    td(input_(type = "text", name = "history_form_amount", id = "history_form_amount", placeholder = "e.g. -252.65", required = True))
                                 ),
+                                tr(
+                                    td(),
+                                    td(p("Note: For a transaction in which you pay someone, enter a negative amount."))
+                                )
                             ),
                             br(),
                             input_(type = "submit", id = "history_form_add", value = "Add"),

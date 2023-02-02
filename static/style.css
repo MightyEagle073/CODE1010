@@ -108,8 +108,8 @@ nav ul li a table td {
     border: 1px solid black;
 }
 
-/*History CSS*/
-#history_add {
+/*Subpages CSS*/
+#history_add, #income_add_income{
     position: absolute;
     top: 0px;
     right: 5%;
@@ -120,46 +120,63 @@ nav ul li a table td {
     background-color: lightgreen;
 }
 
-#history_table, #history_form_table {
+#income_add{
+    font-size: 20px;
+    font-family: "Open Sans", "Segoe UI", sans-serif;
+    padding: 5px;
+    margin: 5px;
+    background-color: lightgreen;
+}
+
+#history_table, #history_form_table, #income_table, #income_form_table {
     display: inline;
 }
 
-#history_table th, #history_table td{
+#history_table th, #history_table td, #income_table th, #income_table td{
     border: 1px solid black;
     margin: 0px;
     padding: 3px;
 }
 
-#history_table td:last-child {
+#history_table td:last-child, #income_table td:last-child{
     cursor: pointer;
 }
 
-#history_form_table td {
+#history_form_table td, #income_form_table td {
     padding: 3px;
 }
 
-#history_form_table td:first-child {
+#history_form_table td:first-child, #income_form_table td:first-child {
     text-align: right;
 }
 
-#history_form_table td:last-child {
+#history_form_table td:last-child #income_table td:last-child {
     text-align: left;
 }
 
-#history_form_table input {
+#history_form_table input, #income_form_table input, #income_form_table select  {
     font-size: 20px;
     font-family: "Open Sans", "Segoe UI", sans-serif;
     padding: 2px;
     margin: 5px;
 }
 
-#history_form_table input:first-child {
+#history_form_table input:first-child, #income_form_table input:first-child {
     padding: 0px;
 }
 
 .history_remove, #starting_balance_edit_button {
     font-family: "Open Sans", "Segoe UI", sans-serif;
     width: 70px;
+}
+
+/*Income CSS*/
+#income_table td:last-child {
+    text-align: left;
+}
+
+#income_table select {
+    width: 250px;
 }
 
 /*Login CSS*/
@@ -193,7 +210,7 @@ nav ul li a table td {
 }
 
 /*History code*/
-#history_tab {
+#history_tab, #income_tab {
     left: 30%;
     width: 40%;
     top: 20%;
@@ -209,7 +226,6 @@ nav ul li a table td {
 }
 
 #history_form_add{
-    position: inline;
     font-size: 20px;
     font-family: "Open Sans", "Segoe UI", sans-serif;
     padding: 5px;
@@ -217,13 +233,19 @@ nav ul li a table td {
     background-color: lightgreen;
 }
 
-#history_form_close {
-    position: inline;
+#history_form_close, #income_close {
     font-size: 20px;
     font-family: "Open Sans", "Segoe UI", sans-serif;
     padding: 5px;
     margin: 5px;
     background-color: red;
+}
+
+#history_form_table p {
+    margin: 0px;
+    width: 250px;
+    font-size: 10px;
+    text-align: center;
 }
 
 #starting_balance_tab {

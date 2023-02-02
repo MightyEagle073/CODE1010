@@ -86,7 +86,9 @@ def create_account():
             "password": request.form["register_password"],
             "created_at": datetime.now(),
             "starting_balance": 0.00,
-            "transactions": [{}]
+            "transactions": [{}],
+            "income": [],
+            "spendings": [],
         }
         session["login"] = request.form["register_username"]
         session.modified = True
