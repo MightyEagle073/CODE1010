@@ -13,7 +13,7 @@ def add_income():
         print("Amount input is not a number")
         session["error_code"] = 401
         return
-    if input < 0:
+    if float(input) < 0:
         print("Amount must not be negative")
         session["error_code"] = 402
         return

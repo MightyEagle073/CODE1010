@@ -65,9 +65,13 @@ def add_history_input():
         "amount": float(input),
     }
     # Appends into already existing database
+    print(append_list, "Monki")
     session["database"][session["login"]]["transactions"] = [append_list] + session["database"][session["login"]]["transactions"]
+    # if len(session["database"][session["login"]]["transactions"][1]) == {}:
+    #     session["database"][session["login"]]["transactions"].pop()
     # Sorts 
     session["database"][session["login"]]["transactions"] = sorted(session["database"][session["login"]]["transactions"], key=lambda transaction: transaction['tt'], reverse=True)
+    print()
     # Assigns ID to every single entry
     i = 1
     for dict in session["database"][session["login"]]["transactions"]:
@@ -89,11 +93,12 @@ def add_history_input():
     # session.modified = True
 
 def remove_history_input(input):
+    print(input)
     session["database"][session["login"]]["transactions"].pop(int(input) - 1)
     session.modified = True
     # Assigns ID to every single entry
     i = 1
-    for dict in session["database"][session["login"]]["transactions"][:-1]:
+    for dict in session["database"][session["login"]]["transactions"]:
         dict["id"] = i
         i = i + 1
     # Assigns Balance to every single entry
